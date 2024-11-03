@@ -47,3 +47,15 @@ Potential features for future versions:
   - More Upgrades: Adding new types of buildings or upgrades.
   - Achievements: Rewarding players for reaching milestones.
   - Save Game: Allowing players to save their progress.
+
+# Credits
+Images
+  - Factory Image: Created by Sudakarn. Adobe Stock Link. Used under Adobe’s free trial            license.
+  - Mine Image: Pixel Art Maker Link. Creator unknown.
+  - Farm Image: Sourced from Cookie Clicker Wiki, added by NemesisVampy. License unknown.
+  - Grandma Image: Sourced from Cookie Clicker Wiki, added by NemesisVampy. License unknown.
+  - Bank Image: Sourced from Cookie Clicker Wiki, added by Enoc456. License unknown.
+  - Cursor Image: Clipart Library Link. Creator and license unknown.
+  - Cookie Image: Sourced from Pixilart Link. Creator and license unknown.
+
+Note: Some images are used under fair use, and others have unknown licenses or creators. If required, please contact me to adjust or remove any content.

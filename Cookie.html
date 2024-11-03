@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Display for total cookies counter -->
+    <div class="cookie-counter">
+        <h1 id="cookie-counter">0 Cookies</h1>
+    </div>
+
+    <!-- Main game container -->
+    <div class="game-container">
+        <!-- Cookie section: Displays the clickable cookie -->
+        <div class="cookie-section">
+            <img id="cookie" class="cookie" src="img/cookie.png" alt="Giant Cookie">
+        </div>
+
+        <!-- Shop section with powerups -->
+        <div class="shop">
+            <h2>Upgrades</h2>
+            <!-- Upgrade for Cursor with automatic clicking functionality -->
+            <div class="powerup" id="cursor" data-price="15" data-cps="1">
+                <img src="img/cursor.png" alt="Cursor">
+                <p>Cursor: Automatically clicks the cookie</p>
+                <p>Cost: <span>15</span> cookies</p>
+            </div>
+
+            <!-- Upgrade for Grandma to bake cookies automatically -->
+            <div class="powerup" id="grandma" data-price="100" data-cps="5">
+                <img src="img/grandma.png" alt="Grandma">
+                <p>Grandma: Bakes cookies from scratch</p>
+                <p>Cost: <span>100</span> cookies</p>
+            </div>
+
+            <!-- Upgrade for Farm to generate cookies periodically -->
+            <div class="powerup" id="farm" data-price="500" data-cps="10">
+                <img src="img/farm.png" alt="Farm">
+                <p>Farm: Grows cookie plants</p>
+                <p>Cost: <span>500</span> cookies</p>
+            </div>
+
+            <!-- Additional upgrades for Mine, Factory, and Bank -->
+            <div class="powerup" id="mine" data-price="2000" data-cps="20">
+                <img src="img/mine.png" alt="Mine">
+                <p>Mine: Digs out cookie dough and chocolate chips</p>
+                <p>Cost: <span>2000</span> cookies</p>
+            </div>
+            <div class="powerup" id="factory" data-price="10000" data-cps="50">
+                <img src="img/factory.png" alt="Factory">
+                <p>Factory: Produces large quantities of cookies</p>
+                <p>Cost: <span>10000</span> cookies</p>
+            </div>
+            <div class="powerup" id="bank" data-price="50000" data-cps="100">
+                <img src="img/bank.png" alt="Bank">
+                <p>Bank: Generates cookies through financial investments</p>
+                <p>Cost: <span>50000</span> cookies</p>
+            </div>
+            <!-- Add more buildings as needed -->
+        </div>
+    </div>
+
+    <!-- Script for game functionality -->
+    <script>
+        // Variables to track total cookies and cookies per second (CPS)
+        let cookieCount = 0;
+        let cps = 0;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const cookie = document.getElementById("cookie");
+            const cookieCounter = document.getElementById("cookie-counter");
+
+            // Increment cookies by 1 on each cookie click
+            cookie.addEventListener("click", () => {
+                cookieCount += 1;
+                updateCookieCounter();
+            });
+
+            // Update cookie count display
+            function updateCookieCounter() {
+                cookieCounter.innerText = `${cookieCount} Cookies`;
+            }
+
+            // Handle purchase of upgrades
+            const upgrades = document.querySelectorAll('.powerup');
+            upgrades.forEach(upgrade => {
+                upgrade.addEventListener('click', () => {
+                    // Retrieve price and CPS for each upgrade
+                    const price = parseInt(upgrade.getAttribute('data-price'));
+                    const cpsValue = parseInt(upgrade.getAttribute('data-cps'));
+
+                    // Purchase upgrade if user has enough cookies
+                    if (cookieCount >= price) {
+                        // Deduct price from total cookies and increase CPS
+                        cookieCount -= price;
+                        cps += cpsValue;
+
+                        // Increase price for next purchase by 15%
+                        const newPrice = Math.floor(price * 1.15);
+                        upgrade.setAttribute('data-price', newPrice);
+                        upgrade.querySelector('span').innerText = newPrice;
+
+                        updateCookieCounter();
+                    }
+                });
+            });
+
+            // Add cookies based on CPS every second
+            setInterval(() => {
+                cookieCount += cps;
+                updateCookieCounter();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
